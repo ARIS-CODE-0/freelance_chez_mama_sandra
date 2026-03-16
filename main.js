@@ -49,10 +49,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Mobile Menu Toggle (Simplified)
+    // Mobile Menu Toggle
     const mobileBtn = document.querySelector('.mobile-menu-btn');
-    mobileBtn?.addEventListener('click', () => {
-        alert('Menu mobile bientôt disponible !');
+    const closeMenu = document.querySelector('.close-menu');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const mobileLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    const toggleMenu = () => {
+        mobileMenu.classList.toggle('active');
+        document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
+    };
+
+    mobileBtn?.addEventListener('click', toggleMenu);
+    closeMenu?.addEventListener('click', toggleMenu);
+
+    mobileLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+    });
+
+    // Lightbox for Gallery
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const captionText = document.getElementById('caption');
+    const galleryImages = document.querySelectorAll('.gallery-item img');
+    const closeLightbox = document.querySelector('.close-lightbox');
+
+    galleryImages.forEach(img => {
+        img.addEventListener('click', () => {
+            lightbox.style.display = 'block';
+            lightboxImg.src = img.src;
+            captionText.innerHTML = img.alt;
+            document.body.style.overflow = 'hidden';
+        });
+    });
+
+    const closeLightboxFunc = () => {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = '';
+    };
+
+    closeLightbox?.addEventListener('click', closeLightboxFunc);
+
+    lightbox?.addEventListener('click', (e) => {
+        if (e.target === lightbox) {
+            closeLightboxFunc();
+        }
+    });
+
+    // Escape key to close overlays
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeMenu?.click();
+            closeLightboxFunc();
+        }
     });
 
     // Smooth scroll for anchors

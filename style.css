@@ -216,12 +216,72 @@ header nav {
     background: none;
     border: none;
     cursor: pointer;
+    color: inherit;
+}
+
+.mobile-menu-btn .material-symbols-outlined {
+    font-size: 2rem;
+}
+
+/* MOBILE MENU OVERLAY */
+.mobile-menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--darker);
+    z-index: 2000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1);
+    padding: 2rem;
+}
+
+.mobile-menu-overlay.active {
+    transform: translateX(0);
+}
+
+.close-menu {
+    position: absolute;
+    top: 2rem;
+    right: 2rem;
+    background: none;
+    border: none;
+    color: var(--white);
+    cursor: pointer;
+}
+
+.close-menu .material-symbols-outlined {
+    font-size: 2.5rem;
+}
+
+.mobile-nav-links {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.mobile-nav-links a {
+    color: var(--white);
+    font-size: 1.5rem;
+    font-family: var(--font-serif);
+    font-weight: 700;
+}
+
+.mobile-menu-cta {
+    text-align: center;
 }
 
 /* HERO SECTION */
 .hero-section {
     height: 100vh;
-    background: url('imgs/hero.jpg') center/cover no-repeat;
+    background: url('imgs/Capture d’écran_16-3-2026_124052_www.google.com.jpeg') center/cover no-repeat;
     display: flex;
     align-items: center;
     position: relative;
@@ -479,6 +539,64 @@ header nav {
 .map-placeholder .btn {
     position: relative;
     z-index: 1;
+}
+
+/* LIGHTBOX */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 3000;
+    padding-top: 50px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.lightbox-content {
+    margin: auto;
+    display: block;
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 10px;
+    animation-name: zoom;
+    animation-duration: 0.6s;
+}
+
+@keyframes zoom {
+    from {transform:scale(0)}
+    to {transform:scale(1)}
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.close-lightbox:hover,
+.close-lightbox:focus {
+    color: #bbb;
+    text-decoration: none;
+}
+
+.lightbox-caption {
+    margin: auto;
+    display: block;
+    width: 80%;
+    max-width: 700px;
+    text-align: center;
+    color: #ccc;
+    padding: 15px 0;
+    font-size: 1.2rem;
+    font-family: var(--font-serif);
 }
 
 /* FOOTER */
